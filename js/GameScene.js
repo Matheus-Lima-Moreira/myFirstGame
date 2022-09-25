@@ -26,28 +26,29 @@ export default class GameScene extends Phaser.Scene {
 
   update() {
     const player = this.player.sprite;
-
-    if (this.keys.left.isDown) {
+    const key = this.keys;
+    
+    if (key.left.isDown) {
       player.setVelocityX(-160);
       player.setFlip(true, false);
       player.anims.play('left', true);
     }
-    else if (this.keys.right.isDown) {
+    else if (key.right.isDown) {
       player.setVelocityX(160);
       player.setFlip(false, false);
       player.anims.play('right', true);
     }    
-    else if (this.keys.up.isDown) {
+    else if (key.up.isDown) {
       player.setVelocityY(-160);
       player.anims.play('up', true);
     }
-    else if (this.keys.down.isDown) {
+    else if (key.down.isDown) {
       player.setVelocityY(160);
       player.anims.play('down', true);
     }
     else {
-      player.setVelocityX(0);
       player.anims.play('stop');
+      player.setVelocity(0);
     }
   }
 }

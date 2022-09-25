@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Game Project</title>
-</head>
-<body>
-    <main id="myFirstGameProject"></main>
 
-    <script src="node_modules/phaser/dist/phaser.js"></script>    
-    <script src="node_modules/phaser/dist/phaser.min.js"></script>    
-    <script type="module" src="js/main.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Game Project</title>
+  <style>
+    body {
+      background-color: rgb(58, 47, 47);
+    }
+
+    main {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      display: block;
+      margin-left: auto;
+      margin-top: 0.7rem;
+      font-family: 'Arial';
+      font-size: x-large;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+      margin-right: auto;
+      width: 6rem;
+      font-weight: bolder;
+      height: auto;
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <button type="button">Play</button>
+
+  <main id="myFirstGameProject"></main>
+
+  <script src="node_modules/phaser/dist/phaser.js"></script>
+  <script src="node_modules/phaser/dist/phaser.min.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

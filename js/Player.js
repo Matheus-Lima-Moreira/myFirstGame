@@ -1,7 +1,7 @@
 export default class Player {
   constructor(scene, widthGame, heightGame) {
     this.scene = scene;
-    this.sprite = scene.physics.add.sprite(widthGame / 2, heightGame / 2, 'character');
+    this.sprite = scene.physics.add.sprite(widthGame/2,heightGame/2,'character',false);
     // this.sprite.setBounce(0.2); // It's a quicking animation
     this.sprite.setCollideWorldBounds(true); // Don't permite the character go out of the screen
 

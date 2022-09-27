@@ -1,54 +1,62 @@
 import Player from "./Player.js";
+import Enemy from "./Enemy.js";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'GameScene',
+      key: "GameScene",
     });
   }
 
-  preload() {
-
-  }
+  preload() {}
 
   create() {
     const larguraJogo = this.sys.canvas.width;
     const alturaJogo = this.sys.canvas.height;
 
-    const backgroundImage = this.add.image(larguraJogo / 2, alturaJogo / 2, 'dungeon');
+    const backgroundImage = this.add.image(
+      larguraJogo / 2,
+      alturaJogo / 2,
+      "dungeon"
+    );
 
     // const walls = this.physics.add.staticGroup();
-    // walls.create(alturaJogo/2, larguraJogo/2).setOrigin(0, 0).refreshBody();
+    // walls.create(200, 200,'character').setOrigin(0, 0).refreshBody();
+
+    // this.physics.world.enable([ this.player, this.enemy ]);
+    // this.physics.world.collide(this.player, this.enemy);
 
     this.player = new Player(this, larguraJogo, alturaJogo);
+
+    this.enemy = new Enemy(this, 264, 250);
+    this.enemy.sprite.body.onCollide = true;
+
+    this.physics.add.collider(
+      this.player.sprite,
+      this.enemy.sprite,
+      this.handlerDamage,
+      undefined,
+      this
+    );
+
     this.keys = this.input.keyboard.createCursorKeys();
   }
 
-  update() {
-    const player = this.player.sprite;
-    const key = this.keys;
-    
-    if (key.left.isDown) {
-      player.setVelocityX(-160);
-      player.setFlip(true, false);
-      player.anims.play('left', true);
-    }
-    else if (key.right.isDown) {
-      player.setVelocityX(160);
-      player.setFlip(false, false);
-      player.anims.play('right', true);
-    }    
-    else if (key.up.isDown) {
-      player.setVelocityY(-160);
-      player.anims.play('up', true);
-    }
-    else if (key.down.isDown) {
-      player.setVelocityY(160);
-      player.anims.play('down', true);
-    }
-    else {
-      player.anims.play('stop');
-      player.setVelocity(0);
-    }
+  handlerDamage(obj1, obj2) {
+    const enemy = obj2;
+
+    const dx = this.player.sprite.x - enemy.x;
+    const dy = this.player.sprite.y - enemy.y;
+
+    const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(400);
+
+    this.player.handleDamage(dir);
+    // const enemy = obj2;
+  }
+
+  update(t, dt) {
+    this.player.preUpdate(t, dt);
+    this.enemy.update();
+    this.player.update(this.keys);
   }
 }

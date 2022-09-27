@@ -1,7 +1,7 @@
 export default class LoadingScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'LoadingScene',
+      key: "LoadingScene",
     });
   }
 
@@ -10,29 +10,46 @@ export default class LoadingScene extends Phaser.Scene {
     const progressBar = this.add.graphics();
 
     const widthBar = 0.7 * larguraJogo;
-    this.load.on('progress', (progress) => {
+
+    // MAKING THE PROGRESS BAR
+    this.load.on("progress", (progress) => {
       progressBar.clear();
       progressBar.fillStyle(0xffffffff, 1);
-      progressBar.fillRect((larguraJogo - widthBar) / 2, this.sys.game.config.height / 2, widthBar * progress, 70);
+      progressBar.fillRect(
+        (larguraJogo - widthBar) / 2,
+        this.sys.game.config.height / 2,
+        widthBar * progress,
+        70
+      );
       progressBar.lineStyle(3, 0x008f, 1);
-      progressBar.strokeRect((larguraJogo - widthBar) / 2, this.sys.game.config.height / 2, widthBar, 70);
+      progressBar.strokeRect(
+        (larguraJogo - widthBar) / 2,
+        this.sys.game.config.height / 2,
+        widthBar,
+        70
+      );
     });
 
-    this.load.on('complete', () => {
-      this.scene.start('GameScene');
+    // ON COMPLETE
+    this.load.on("complete", () => {
+      this.scene.start("GameScene");
     });
 
-    this.load.image('dungeon', 'imgs/dungeon.png');
-    this.load.spritesheet('character', 'imgs/nurse.png', { frameWidth: 30, frameHeight: 32 });
+    // LOADING THE IMGS
+    this.load.image("dungeon", "imgs/dungeon.png");
+    this.load.spritesheet("character", "imgs/nurse.png", {
+      frameWidth: 90,
+      frameHeight: 96,
+    });
+    this.load.spritesheet("spikeball", "imgs/spike_ball.png", {
+      frameWidth: 120,
+      frameHeight: 120,
+    });
+    this.load.image('spike_ball', 'imgs/spike_ball.png')
     // this.preload.atlas('character','imgs/character.png',)
-    this.load.image('spikeball', 'imgs/spikeball.png');
   }
 
-  create() {
+  create() {}
 
-  }
-
-  update() {
-
-  }
+  update() {}
 }

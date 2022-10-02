@@ -9,7 +9,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
+      debug: false
     }
   },
   scene: [
@@ -19,3 +19,7 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+document.getElementById('easterEgg').addEventListener('click', () => {
+  document.body.innerHTML = '<divs style="color:white;">PARÁBENS VOCÊ ACHOU UM EASTER EGG, O QUE ISSO MUDA NA SUA VIDA?? I DON\'T KNOW BUT YOU\'RE COOL MAN</div>';
+});

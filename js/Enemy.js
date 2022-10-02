@@ -35,8 +35,6 @@ export default class Enemy {
   }
 
   changeDirection(directX, directY) {
-    console.log(directX,'----',directY)
-
     if (directX > 2) {
       this.#direction.x = true;
     } else {

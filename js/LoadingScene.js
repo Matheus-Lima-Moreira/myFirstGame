@@ -46,6 +46,7 @@ export default class LoadingScene extends Phaser.Scene {
       frameHeight: 120,
     });
     this.load.image('spike_ball', 'imgs/spike_ball.png')
+    this.load.image('heart', 'imgs/heart.png');
     // this.preload.atlas('character','imgs/character.png',)
   }
 
